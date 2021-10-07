@@ -497,6 +497,244 @@ puts "x outside the block: #{x}"  # 10
 
 
 
+## Arrays
+
+the index of arrays is from 0
+
+```ruby
+var1 = []
+```
+
+In Ruby, the arrays can contain multi types in one,
+
+```ruby
+flavour = 'mango'
+var2 = [80.5, flavour, [true, false]]
+```
+
+Changing the value can also assign another type, even another array
+
+```ruby
+var3 = ['a', 2, 'jack']
+var3[0] = 99
+var3[2] = [5, 2, 3]
+```
+
+Common methods,
+
+```ruby
+puts var3[2].sort
+puts var3.length
+puts var3.first
+puts var3.last
+```
+
+Also, we can use **each** keyword to iterate the array,
+
+```ruby
+locations = ['Miami', 'Chicago', 'New York']
+locations.each do |loc|
+    puts 'I love ' + loc + '!'
+end
+```
+
+using **delete** method to delete the element,
+
+```ruby
+locations.delete('Miami')
+```
+
+
+
+**Parallel Assignment**
+
+```ruby
+a = 1, 2, 3, 4
+b = [1, 2, 3, 4]
+```
+
+
+
+**Environment Variables**
+
+using **ENV** to get the environment variables,
+
+```ruby
+ENV.each {|k, v| puts "#{k}: #{v}"}
+```
+
+
+
+**Command-line arguments**
+
+using **ARGV** to get the arguments, which is an array
+
+```ruby
+f = ARGV[0]
+puts f
+```
+
+
+
+## Ranges
+
+using double dot("..") to reprent the range of something, like digits or alphebat.
+
+```ruby
+digits = -1..9
+puts digits.include?(5)
+puts digits.min
+puts digits.max
+puts digits.reject {|i| i < 5}
+```
+
+Especially, we can use **===** to see if some value falls within the interval
+
+```ruby
+(1..10) === 5       -> true  
+(1..10) === 15      -> false  
+(1..10) === 3.14159 -> true  
+('a'..'j') === 'c'  -> true  
+('a'..'j') === 'z'  -> false 
+```
+
+
+
+## Symbols
+
+A symbol looks like a variable name, but its prefix is a colon, e.g. **:action**
+
+Besides, we can cosider the colon to mean "thing named", like :id means the thing named id
+
+A given symbol name refers to the same object throughout a Ruby program. The symbols are more efficient than strings, for any given name is only one Symbol object.
+
+```ruby
+puts "string".object_id  # 21066960
+puts "string".object_id  # 21066930
+puts :symbol.object_id  # 132178
+puts :symbol.object_id  # 132178
+```
+
+
+
+How to decide to use Symbol or String?
+
+- if the contents are important, use a string
+- if the identity of the object is important, use a symbol
+
+
+
+```ruby
+know_key = :yes
+if know_key == :yes
+    puts 'You are a Rubyist'
+else 
+    puts 'Start learning Ruby'
+end
+```
+
+```ruby
+know_ruby = 'yes'  
+if know_ruby == 'yes'  
+  puts 'You are a Rubyist'  
+else  
+  puts 'Start learning Ruby'  
+end 
+```
+
+these two programs give same result, but the second one is not as efficient. Every mention of 'yes' creates a new object stored separately in memory, whereas symbols are single reference values that are only initialized once!
+
+
+
+## Hashes
+
+Also known as asspciative arrays, maps, or dictionaries.
+
+```ruby
+h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine', 12 => 'dodecine'}  
+puts h.length  # 4  
+puts h['dog']  # 'canine'  
+```
+
+And the default value in Ruby is **nil**
+
+
+
+**Using Symbols as Hash Keys**:
+
+```ruby
+people = Hash.new  
+people[:nickname] = 'IndianGuru'  
+people[:language] = 'Marathi'  
+people[:lastname] = 'Talim' 
+
+# or write in this way
+
+h = {:nickname => 'IndianGuru', :language => 'Marathi', :lastname => 'Talim'}  
+```
+
+And also, it can be used **:** to replace **=>**. But, carefully, do not use numeric keys when using **:**.
+
+
+
+
+
+## Random Numbers
+
+**rand** method could generate the float number, which is great than or equal to 0.0 and less than 1.0. If add parameter 5, it will generate the number less than 5.
+
+```ruby
+word_list_one = ['24/7', 'multi-Tier', '30,000 foot', 'B-to-B', 'win-win', 'front-end', 
+                 'web-based', 'pervasive', 'smart', 'six-sigma', 'critical-path', 'dynamic'] 
+word_list_two = ['empowered', 'sticky', 'value-added', 'oriented', 'centric', 'distributed', 
+                 'clustered', 'branded', 'outside-the-box', 'positioned', 'networked', 'focused', 
+                 'leveraged', 'aligned', 'targeted', 'shared', 'cooperative', 'accelerated'] 
+word_list_three = ['process', 'tipping-point', 'solution', 'architecture', 'core competency', 
+                   'strategy', 'mindshare', 'portal', 'space', 'vision', 'paradigm', 'mission']  
+  
+one_len = word_list_one.length  
+two_len = word_list_two.length  
+three_len = word_list_three.length  
+  
+rand1 = rand(one_len)  
+rand2 = rand(two_len)  
+rand3 = rand(three_len)  
+  
+phrase = word_list_one[rand1] + " " + word_list_two[rand2] + " " + word_list_three[rand3]  
+  
+puts phrase
+```
+
+
+
+## Read/Write Text Files
+
+```ruby
+File.open('p011mtdstack.rb', 'r') do |f1|
+    while line = f1.gets
+        puts line
+    end
+end
+
+File.open('test.rb', 'w') do |f2|
+    f2.puts "Created by Cagy\n"
+end
+```
+
+File.open method canopen the file in different modes:
+
+- **r**: read-only
+- **r+**: read and write
+- **w**: write-only
+
+
+
+
+
+## Regular Expressions
+
+http://rubylearning.com/satishtalim/ruby_regular_expressions.html
+
 
 
 
