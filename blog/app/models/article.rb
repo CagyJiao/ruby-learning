@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
     include Visible
-    has_many :comments
+    has_many :comments, dependent: :destroy
 
     # add validations for title and body
     # presence means the value must contain at least one non-whitespace char
