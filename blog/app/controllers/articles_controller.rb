@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(title: "...", body: "...")
+    @article = Article.new(article_params)
 
     if @article.save
       # it will cause to make a new request 
@@ -22,5 +22,10 @@ class ArticlesController < ApplicationController
       render :new
     end
   end
+
+  private
+    def article_params
+      params.require(:article).permit(:title, :body)
+    end
 
 end
