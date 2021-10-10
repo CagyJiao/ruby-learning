@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+    include Visible
     has_many :comments
 
     # add validations for title and body
